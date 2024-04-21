@@ -52,6 +52,7 @@ class Expense {
   final String date;
   final String time;
   final bool isShared;
+
   final String? username;
   final double amount;
   final ExpenseCategory category;

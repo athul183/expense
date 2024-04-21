@@ -10,7 +10,7 @@ class HiveDatabase {
 
     for (var expense in allExpense) {
       List<dynamic> expenseFomatted = [
-        expense.title,
+        expense.name,
         expense.amount,
         expense.dateTime,
       ];
@@ -26,11 +26,11 @@ class HiveDatabase {
 
     for (int i = 0; i < saveExpenses.length; i++) {
       String name = saveExpenses[i][0];
-      double amount = saveExpenses[i][1];
+      String amount = saveExpenses[i][1];
       DateTime dateTime = saveExpenses[i][2];
 
       ExpenseItem expense = ExpenseItem(
-        title: name,
+        name: name,
         amount: amount,
         dateTime: dateTime,
       );

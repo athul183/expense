@@ -43,7 +43,7 @@ class MyBarGraph extends StatelessWidget {
       BarChartData(
         maxY: maxY,
         minY: 0,
-        titlesData: FlTitlesData(
+        titlesData: const FlTitlesData(
           show: true,
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -55,7 +55,7 @@ class MyBarGraph extends StatelessWidget {
             ),
           ),
         ),
-        gridData: FlGridData(show: false),
+        gridData:const FlGridData(show: false),
         borderData: FlBorderData(show: false),
         barGroups: myBarData.barData
             .map(

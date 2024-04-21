@@ -142,8 +142,8 @@ class _AuthScreenState extends State<AuthScreen> {
                     hintText: 'UserName',
                     hintStyle: TextStyle(color: Colors.grey[500])),
                 controller: _usernameController,
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer),
+                // style: TextStyle(
+                //     color: Theme.of(context).colorScheme.onPrimaryContainer),
                 validator: (value) {
                   if (value == null || value.trim().length < 3) {
                     return 'Username must be greater than 2 characters';
@@ -169,8 +169,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   hintText: 'Password',
                   hintStyle: TextStyle(color: Colors.grey[500])),
               controller: _passwordController,
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer),
+              // style: TextStyle(
+              //     color: Theme.of(context).colorScheme.onPrimaryContainer),
               obscureText: true,
               validator: (value) {
                 if (value == null || value.trim().length < 6) {
@@ -196,8 +196,8 @@ class _AuthScreenState extends State<AuthScreen> {
                     filled: true,
                     hintText: 'Confirm Password',
                     hintStyle: TextStyle(color: Colors.grey[500])),
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer),
+                // style: TextStyle(
+                //     color: Theme.of(context).colorScheme.onPrimaryContainer),
                 obscureText: true,
                 validator: (value) {
                   if (value == null ||

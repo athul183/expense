@@ -12,10 +12,12 @@ class NewExpenseScreen extends StatefulWidget {
     super.key,
     this.sharedExpense,
     this.isShared = false,
+    required this.availablemoney
   });
   final bool isShared;
   final SharedExpense? sharedExpense;
-
+  final double availablemoney;
+  
   @override
   State<StatefulWidget> createState() => _NewExpenseScreenState();
 }
@@ -144,7 +146,7 @@ class _NewExpenseScreenState extends State<NewExpenseScreen> {
                 date: formattedDate,
                 time: formattedTime,
                 username: username,
-                isShared: true,
+                isShared: true, 
               )
             : Expense(
                 id: id,
@@ -157,7 +159,7 @@ class _NewExpenseScreenState extends State<NewExpenseScreen> {
       );
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -195,6 +197,7 @@ class _NewExpenseScreenState extends State<NewExpenseScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        
                         decoration: const InputDecoration(
                           labelText: 'Amount',
                           prefixText: '₹ ',
@@ -211,8 +214,8 @@ class _NewExpenseScreenState extends State<NewExpenseScreen> {
                           return null;
                         },
                         keyboardType: TextInputType.number,
-                        onSaved: (newValue) {
-                          enteredAmount = double.tryParse(newValue!);
+                        onChanged: (newValue) {
+                          enteredAmount = double.tryParse(newValue);
                         },
                       ),
                     ),
@@ -292,15 +295,40 @@ class _NewExpenseScreenState extends State<NewExpenseScreen> {
                       child: const Text('Cancel'),
                     ),
                     const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: submit,
+                     ElevatedButton(
+                     
+                      onPressed: (){
+                        if(widget.availablemoney < enteredAmount!){
+                          showDialog(
+                context: context,
+                        builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Alert'),
+                    content: Text('Your Budget is overflowed'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Close'),
+                      ),
+                    ],
+                  );
+                },
+              );
+              }
+              else{
+                submit();
+              }
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
                               Theme.of(context).colorScheme.primaryContainer,
                           foregroundColor:
                               Theme.of(context).colorScheme.onPrimaryContainer),
                       child: const Text('Submit'),
-                    ),
+                    )
+                    
                   ],
                 ),
               ],

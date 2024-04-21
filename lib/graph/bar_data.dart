@@ -1,7 +1,4 @@
-
-
 import 'package:assessment_application_1/graph/individual_bar.dart';
-
 class BarData {
   final double sunAmount;
   final double monAmount;

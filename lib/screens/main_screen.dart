@@ -28,6 +28,7 @@ class _MainScreenState extends State<MainScreen> {
       });
     }
     return Scaffold(
+      
       body: _selectedPageIndex == 0 ? TransScreen() : MyGraph(),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),

@@ -192,7 +192,8 @@ class _TransScreen extends State<TransScreen> {
               date: item.value['date'],
               time: item.value['time'],
               isShared: item.value['isShared'],
-              username: item.value['username'],
+              username: item.value['username'], 
+              
             ),
           );
         }
@@ -232,7 +233,8 @@ class _TransScreen extends State<TransScreen> {
               amount: item.value['amount'],
               category: eCategory,
               date: item.value['date'],
-              time: item.value['time'],
+              time: item.value['time'], 
+              
             ),
           );
         }
@@ -279,18 +281,36 @@ class _TransScreen extends State<TransScreen> {
     super.initState();
   }
 
+  
+
+   double get availableMoney {
+    var expense = 0.0;
+    var income = 0.0;
+    for (final item in widget.registeredExpense) {
+      expense += item.amount;
+    }
+    for (final item in widget.registeredIncome) {
+      income += item.amount;
+    }
+    return income - expense;
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     timeDilation = 1.2;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isShared ? widget.sharedExpense!.title : 'Welcome!'),
+        automaticallyImplyLeading: false,
+        title: Text(widget.isShared ? widget.sharedExpense!.title : 'Welcome :)'),
         actions: [
           IconButton(
               onPressed: () {
                 firebaseauth.signOut();
               },
-              icon: Icon(Icons.logout))
+              icon: const Icon(Icons.logout))
         ],
       ),
       body: isFetching
@@ -387,8 +407,9 @@ class _TransScreen extends State<TransScreen> {
                       ? NewExpenseScreen(
                           isShared: true,
                           sharedExpense: widget.sharedExpense,
+                          availablemoney: availableMoney,
                         )
-                      : const NewExpenseScreen(),
+                      : NewExpenseScreen(availablemoney: availableMoney,),
                 ),
               );
 
@@ -436,4 +457,8 @@ class _TransScreen extends State<TransScreen> {
       ),
     );
   }
+  
 }
+
+List<Expense> expenseLoadedItem = [];
+
